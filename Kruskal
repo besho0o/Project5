@@ -1,0 +1,36 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package kruskal;
+
+/**
+ *
+ * @author Beshoo
+ */
+public class Kruskal {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        
+        // Infinity variable equals 10000.
+        final int INF = 10000;
+        // declare and initialize matrix
+        int Matrix[][] = {{INF, 4, INF, INF, INF, INF, INF, 8, INF},
+                          {4, INF, 8, INF, INF, INF, INF, 11, INF},
+                          {INF, 8, INF, 7, INF, 4, INF, INF, 2},
+                          {INF, INF, 7, INF, 9, 14, INF, INF, INF},
+                          {INF, INF, INF, 9, INF, 10, INF, INF, INF},
+                          {INF, INF, 4, 14, 10, INF, 2, INF, INF},
+                          {INF, INF, INF, INF, INF, 2, INF, 1, 6},
+                          {8, 11, INF, INF, INF, INF, 1, INF, 7},
+                          {INF, INF, 2, INF, INF, INF, 6, 7, INF}};
+        
+        
+    }
+    
+}
