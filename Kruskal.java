@@ -68,6 +68,8 @@ public class Kruskal {
         int noOfEdges = 1;
         int total = 0;
         int[] visited = new int[Matrix.length];
+        char[][] minHeap = new char[Matrix.length][2];
+        int[] distances = new int[Matrix.length];
 
         for (int i = 0; i < Matrix.length; i++) {
 
@@ -99,7 +101,7 @@ public class Kruskal {
                         min = Matrix[i][j];
                         u = i;
                         v = j;
-                       destinationNode = i;
+                        destinationNode = i;
 
                     }
 
@@ -147,13 +149,18 @@ public class Kruskal {
 //            }
             if (!parentNodes.contains(destinationNode)) {
                 noOfEdges++;
-                System.out.println("Edge Found: " + labels[u] + "->" + labels[v] + " Min : " + min);
+                minHeap[v][0] = labels[u];
+                minHeap[v][1] = labels[v];
+                distances[v]=min;
+                System.out.println("Edge Found: " + minHeap[v][0] + "->" +  minHeap[v][1] + " Min : " +   distances[v]);
+
                 total += min;
                 parent[v] = u;
                 parentNodes.add(parent[v]);//            System.out.println("Parent: "+labels[parent[v]]);
-              //  visited[u] = 1; //doesn't visit e 
+                //  visited[u] = 1; //doesn't visit e 
 
             }
+
             //visited[u] = 1; // doesn't visit c
             // parent[u] = v;
             Matrix[u][v] = INF;
