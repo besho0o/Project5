@@ -67,16 +67,22 @@ public class Kruskal {
         int v = 0;
         int noOfEdges = 1;
         int total = 0;
-        int[] visited = new int[Matrix.length];
-        char[][] minHeap = new char[Matrix.length][2];
-        int[] distances = new int[Matrix.length];
+        int[] visited = new int[Matrix[0].length];
+        int[] isParent = new int[Matrix[0].length];
+        char[][] minHeap = new char[Matrix[0].length][2];
+        int[] distances = new int[Matrix[0].length];
 
+        int source = 0;
         for (int i = 0; i < Matrix.length; i++) {
 
             parent[i] = 0;
             visited[i] = 0;
+            isParent[i] = 0;
 
         }
+                visited[source]=1;
+
+                
 
         char[] alphabet = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
         char[] labels = new char[Matrix.length];
@@ -147,19 +153,22 @@ public class Kruskal {
 //                }
 //
 //            }
-            if (!parentNodes.contains(destinationNode)) {
+// !parentNodes.contains(destinationNode)||
+        //    if (isParent[u] != 1) {
                 noOfEdges++;
                 minHeap[v][0] = labels[u];
                 minHeap[v][1] = labels[v];
-                distances[v]=min;
-                System.out.println("Edge Found: " + minHeap[v][0] + "->" +  minHeap[v][1] + " Min : " +   distances[v]);
+                distances[v] = min;
+                System.out.println("Edge Found: " + minHeap[v][0] + "->" + minHeap[v][1] + " Min : " + distances[v]);
 
                 total += min;
-                parent[v] = u;
-                parentNodes.add(parent[v]);//            System.out.println("Parent: "+labels[parent[v]]);
-                //  visited[u] = 1; //doesn't visit e 
+                //  parent[v] = u;
+                // parentNodes.add(parent[v]);//            System.out.println("Parent: "+labels[parent[v]]);
+                isParent[u] = 1;
+                visited[v] = 1;
 
-            }
+//  visited[u] = 1; //doesn't visit e 
+           // }
 
             //visited[u] = 1; // doesn't visit c
             // parent[u] = v;
@@ -171,4 +180,14 @@ public class Kruskal {
         System.out.println("The weight of the minimum spanning tree is " + total);
     }
 
+//    public static void print(int[][] MST, int[] distances) {
+//        for (int i = 0; i < MST.length; i++) {
+//            for (int j = 0; j < MST[i].length; j++) {
+//                System.out.println("Edge Found: " + MST[i][j] + "->" + MST[i][j] + " Min : " + distances[j]);
+//
+//            }
+//
+//        }
+//
+//    }
 }
