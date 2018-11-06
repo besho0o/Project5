@@ -10,6 +10,7 @@ package kruskal;
  * @author maha
  */
 public class LLnode {
+
     // declare 
     private int index;
     private char label;
@@ -17,38 +18,36 @@ public class LLnode {
     private LLnode next;
     private int order;
     private boolean checked = false;
-    
-    
-   // create constructors:
+
+    // create constructors:
     // empty constructor:
     public LLnode() {
         // initialize
         index = 0;
-        weight=-1;
+        weight = -1;
         next = null;
-        checked=false;
+        checked = false;
     }
-    
-    
+
     // create constructor for weighted nodes
-      public LLnode(int index, char label, LLnode next) {
+    public LLnode(int index, char label, LLnode next) {
         // initialize
         this.index = index;
         this.next = next;
-        this.label=label;
-        checked=false;
+        this.label = label;
+        checked = false;
     }
-      
-   
+
     // create constructor for weighted nodes
-      public LLnode(int index, char label, int weight, LLnode next) {
+    public LLnode(int index, char label, int weight, LLnode next) {
         // initialize
         this.index = index;
-        this.weight= weight;
+        this.weight = weight;
         this.next = next;
-        this.label=label;
-        checked=false;
+        this.label = label;
+        checked = false;
     }
+
     // getters + setters:
     public int getIndex() {
         return index;
@@ -65,8 +64,8 @@ public class LLnode {
     public void setNext(LLnode next) {
         this.next = next;
     }
-    
-     public int getWeight() {
+
+    public int getWeight() {
         return weight;
     }
 
@@ -89,8 +88,9 @@ public class LLnode {
     public void setChecked(boolean checked) {
         this.checked = checked;
     }
-    
-    
-    
-    
+
+    public boolean isNull() {
+        return this.index == 0;
+    }
+
 }// class 
