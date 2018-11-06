@@ -100,7 +100,7 @@ public class Kruskal {
                 }
 
                 LLnode destinationHead = AdjacencyList[j].getHead();
-                System.out.println("Checking cyclicity from " + labelsTST[i] + " to " + labelsTST[j] + "...\n");
+                System.out.println("Checking cyclicity at edge " + labelsTST[i] + "->" + labelsTST[j] + "...\n");
 
                 //                        System.out.println(AdjacencyList[i].findCycle(i, j,  AdjacencyList[i],  AdjacencyList[j]));
 //boolean isCycle = AdjacencyList[i].findCycle(parentHead, destinationHead, AdjacencyList[i], AdjacencyList[j])
