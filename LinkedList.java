@@ -144,29 +144,31 @@ public class LinkedList {
     public boolean findCycle(LLnode parent, LLnode destination, LinkedList pList, LinkedList dList) {
 
         // || parent==null && destination==null
-        if (parent == null && destination != null ) {
+        //
+        if (parent == null && destination != null) {
             return false;
 
         }
         if (parent != null && destination == null) {
             return false;
         }
-        
-        
+
         if (parent == destination) {
             return true;
 
         }
-        if (parent == destination) {
-            return true;
+        
+
+        LLnode ParentNeighbor = pList.getNeighborNot(destination.getLabel());
+        LLnode DestNeighbor = dList.getNeighborNot(parent.getLabel());
+        if (ParentNeighbor!=null) {
+            if (ParentNeighbor == DestNeighbor) {
+                return true;
+            }
 
         }
-        if (pList.getNeighborNot(destination.getLabel()) == dList.getNeighborNot(parent.getLabel())) {
-            return true;
+        return findCycle(parent.getNext(), destination.getNext(), pList, dList);
 
-        } else {
-            return findCycle(parent.getNext(), destination.getNext(), pList, dList);
-        }
     }
 
 }// class
