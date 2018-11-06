@@ -143,13 +143,15 @@ public class LinkedList {
 
     public boolean findCycle(LLnode parent, LLnode destination, LinkedList pList, LinkedList dList) {
 
-        if (parent == null && destination != null) {
+        // || parent==null && destination==null
+        if (parent == null && destination != null ) {
             return false;
 
         }
         if (parent != null && destination == null) {
             return false;
         }
+        
         
         if (parent == destination) {
             return true;
