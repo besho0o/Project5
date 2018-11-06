@@ -21,15 +21,15 @@ public class Kruskal {
 
         final int INF = 999;
 
-        int[][] test = {
-            {INF, 1, 1},
-            {1, INF, 1},
-            {1, 1, INF},};
-//
-//        int[][] test2 = {
-//            {INF, 1, INF},
+//        int[][] test = {
+//            {INF, 1, 1},
 //            {1, INF, 1},
-//            {INF, 1, INF},};
+//            {1, 1, INF},};
+//
+        int[][] test = {
+            {INF, 1, INF},
+            {1, INF, 1},
+            {INF, 1, INF},};
 
         LinkedList[] AdjacencyList = new LinkedList[test.length];
 
