@@ -21,11 +21,6 @@ public class Kruskal {
 
         final int INF = 999;
 
-//        int[][] test = {
-//            {INF, 1, 1},
-//            {1, INF, 1},
-//            {1, 1, INF},};
-//
         int[][] test = {
             {INF, 1, INF},
             {1, INF, 1},
@@ -43,25 +38,10 @@ public class Kruskal {
 
         }
 
-        //  int[][] adjacentNodes = new int[test.length][test.length];
-//
-//        for (int i = 0; i < parentTEST.length; i++) {
-//            for (int j = 0; j < parentTEST[i].length; j++) {
-//                parentTEST[i][j] = 1000;
-//
-//            }
-//
-//        }
         for (int i = 0; i < test.length; i++) {
             for (int j = 0; j < test.length; j++) {
                 if (test[i][j] != INF) {
-//                    if (adjacentNodes[i][j] == 1000) {
-//                        adjacentNodes[j][i] = i;
-//                        adjacentNodes[i][j] = j;
-//
-//                    }
 
-// AdjacencyList[j].setHead(head);
                     AdjacencyList[j].InsertNeighbor(i, labelsTST[i]);
 
                 }
@@ -76,23 +56,65 @@ public class Kruskal {
             System.out.println("\n\n\n");
 
         }
-//
-//        for (int i = 0; i < AdjacencyList.length; i++) {
-//
-//            LLnode parentHead = AdjacencyList[i].getHead();
-//
-//
-//                int destINDEX = parentHead.getNext().getIndex();
-//                LLnode destinationHead = AdjacencyList[destINDEX].getHead();
-//
-//                System.out.println("Checking cyclicity from " + parentHead.getLabel() + " to " + destinationHead.getLabel() + "...\n");
-//                System.out.println(AdjacencyList[i].findCycle(parentHead, destinationHead, AdjacencyList[i], AdjacencyList[destINDEX]));
-//            
-//
-//        }
+
         for (int i = 0; i < test.length; i++) {
             LLnode parentHead = AdjacencyList[i].getHead();
-           // System.out.println("p = "+parentHead.getLabel());
+
+            for (int j = 0; j < test[i].length; j++) {
+                if (i == j || test[i][j] == INF) {
+                    continue;
+                }
+
+                LLnode destinationHead = AdjacencyList[j].getHead();
+                System.out.println("Checking cyclicity at edge " + labelsTST[i] + "->" + labelsTST[j] + "...\n");
+
+                System.out.println(AdjacencyList[i].findCycle(parentHead, destinationHead, AdjacencyList[i], AdjacencyList[j]));
+
+                System.out.println("\n\n");
+            }
+            System.out.println("\n\n");
+        }
+
+        System.out.println("\n\n\n\n\n\n\n\n");
+
+        // Matrix 2:
+        System.out.println("MATRIX 2 ");
+
+        test = new int[][]{
+            {INF, 1, 1},
+            {1, INF, 1},
+            {1, 1, INF}};
+
+        System.out.println("\n\n\n");
+
+        for (int i = 0; i < test.length; i++) {
+            AdjacencyList[i] = new LinkedList();
+
+            labelsTST[i] = alphabetTST[i];
+
+        }
+
+        for (int i = 0; i < test.length; i++) {
+            for (int j = 0; j < test.length; j++) {
+                if (test[i][j] != INF) {
+
+                    AdjacencyList[j].InsertNeighbor(i, labelsTST[i]);
+
+                }
+
+            }
+
+        }
+
+        for (int i = 0; i < AdjacencyList.length; i++) {
+            System.out.println(labelsTST[i] + "'s neighbors: ");
+            AdjacencyList[i].PrintNeighbors();
+            System.out.println("\n\n\n");
+
+        }
+
+        for (int i = 0; i < test.length; i++) {
+            LLnode parentHead = AdjacencyList[i].getHead();
 
             for (int j = 0; j < test[i].length; j++) {
                 if (i == j) {
@@ -102,79 +124,95 @@ public class Kruskal {
                 LLnode destinationHead = AdjacencyList[j].getHead();
                 System.out.println("Checking cyclicity at edge " + labelsTST[i] + "->" + labelsTST[j] + "...\n");
 
-                //                        System.out.println(AdjacencyList[i].findCycle(i, j,  AdjacencyList[i],  AdjacencyList[j]));
-//boolean isCycle = AdjacencyList[i].findCycle(parentHead, destinationHead, AdjacencyList[i], AdjacencyList[j])
                 System.out.println(AdjacencyList[i].findCycle(parentHead, destinationHead, AdjacencyList[i], AdjacencyList[j]));
 
                 System.out.println("\n\n");
             }
             System.out.println("\n\n");
         }
-//        
-//     LLnode parentHead = pList.getHead();
-//        LLnode destinationHead = dList.getHead();
-//        
-//        
-//        
-//        
-//        findCycle();
-//        
-//        
-//
-//        for (int i = 0; i < test.length; i++) {
-//            System.out.println(labelsTST[i] + "'s parents are: ");
-//
-//            for (int j = 0; j < adjacentNodes.length; j++) {
-//                if (adjacentNodes[i][j] != 1000) {
-//                    System.out.println(labelsTST[adjacentNodes[i][j]]);
-//
-//                }
-//            }
-//            System.out.println("   \n\n");
-//
-//        }
-        System.out.println("\n\n\n");
-//
-//        for (int i = 0; i < test.length; i++) {
-//            for (int j = 0; j < test[i].length; j++) {
-//                System.out.println("\n");
-//
-//                System.out.println("Now at edge: " + labelsTST[i] + " " + labelsTST[j]);
-//
-//                System.out.println("_________________________________");
-//                if (findCycle(adjacentNodes, i, j)) {
-//
-//                    System.out.println("There's a cycle.");
-//                } else {
-//                    System.out.println("NO CYCLE!!!!!!!!!!!!");
-//                }
-//            }
-//            System.out.println("\n\n\n");
-//
-//        }
 
         System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+        System.out.println("MATRIX 3!!!!!!!!!!!!!!!!!!!!!!!");
 
-//        int[][] Matrix = {
-//            // A  B   C    D    E    F    G   H   I
-//            // a
-//            {INF, 4, INF, INF, INF, INF, INF, 8, INF},
-//            // b
-//            {4, INF, 8, INF, INF, INF, INF, 11, INF},
-//            // c
-//            {INF, 8, INF, 7, INF, 4, INF, INF, 2},
-//            // d
-//            {INF, INF, 7, INF, 9, 14, INF, INF, INF},
-//            // e
-//            {INF, INF, INF, 9, INF, 10, INF, INF, INF},
-//            // f
-//            {INF, INF, 4, 14, 10, INF, 2, INF, INF},
-//            // g 
-//            {INF, INF, INF, INF, INF, 2, INF, 1, 6},
-//            // h
-//            {8, 11, INF, INF, INF, INF, 1, INF, 7},
-//            // i
-//            {INF, INF, 2, INF, INF, INF, 6, 7, INF}};
+        int[][] Matrix = {
+            // A  B   C    D    E    F    G   H   I
+            // a
+            {INF, 4, INF, INF, INF, INF, INF, 8, INF},
+            // b
+            {4, INF, 8, INF, INF, INF, INF, 11, INF},
+            // c
+            {INF, 8, INF, 7, INF, 4, INF, INF, 2},
+            // d
+            {INF, INF, 7, INF, 9, 14, INF, INF, INF},
+            // e
+            {INF, INF, INF, 9, INF, 10, INF, INF, INF},
+            // f
+            {INF, INF, 4, 14, 10, INF, 2, INF, INF},
+            // g 
+            {INF, INF, INF, INF, INF, 2, INF, 1, 6},
+            // h
+            {8, 11, INF, INF, INF, INF, 1, INF, 7},
+            // i
+            {INF, INF, 2, INF, INF, INF, 6, 7, INF}};
+
+        System.out.println("\n\n\n");
+
+        AdjacencyList = new LinkedList[Matrix.length];
+
+        char[] alphabet = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+        labelsTST = new char[Matrix.length];
+
+        for (int i = 0; i < Matrix.length; i++) {
+            AdjacencyList[i] = new LinkedList();
+
+            labelsTST[i] = alphabet[i];
+
+        }
+
+        for (int i = 0; i < Matrix.length; i++) {
+            AdjacencyList[i] = new LinkedList();
+
+            labelsTST[i] = alphabetTST[i];
+
+        }
+
+        for (int i = 0; i < Matrix.length; i++) {
+            for (int j = 0; j < Matrix.length; j++) {
+                if (Matrix[i][j] != INF) {
+
+                    AdjacencyList[j].InsertNeighbor(i, labelsTST[i]);
+
+                }
+
+            }
+
+        }
+
+        for (int i = 0; i < AdjacencyList.length; i++) {
+            System.out.println(labelsTST[i] + "'s neighbors: ");
+            AdjacencyList[i].PrintNeighbors();
+            System.out.println("\n\n\n");
+
+        }
+
+        for (int i = 0; i < Matrix.length; i++) {
+            LLnode parentHead = AdjacencyList[i].getHead();
+
+            for (int j = 0; j < Matrix[i].length; j++) {
+                if (i == j) {
+                    continue;
+                }
+
+                LLnode destinationHead = AdjacencyList[j].getHead();
+                System.out.println("Checking cyclicity at edge " + labelsTST[i] + "->" + labelsTST[j] + "...\n");
+
+                System.out.println(AdjacencyList[i].findCycle(parentHead, destinationHead, AdjacencyList[i], AdjacencyList[j]));
+
+                System.out.println("\n\n");
+            }
+            System.out.println("\n\n");
+        }
+
 //
 //        int[][] parents = new int[Matrix.length][Matrix[0].length];
 //
