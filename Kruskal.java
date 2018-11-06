@@ -117,7 +117,7 @@ public class Kruskal {
             LLnode parentHead = AdjacencyList[i].getHead();
 
             for (int j = 0; j < test[i].length; j++) {
-                if (i == j) {
+                if (i == j|| test[i][j] == INF) {
                     continue;
                 }
 
@@ -199,7 +199,7 @@ public class Kruskal {
             LLnode parentHead = AdjacencyList[i].getHead();
 
             for (int j = 0; j < Matrix[i].length; j++) {
-                if (i == j) {
+                if (i == j|| Matrix[i][j] == INF) {
                     continue;
                 }
 
