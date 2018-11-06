@@ -1,0 +1,428 @@
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package kruskal_;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+
+/**
+ *
+ * @author 1605216
+ */
+public class Kruskal_ {
+    
+    
+    
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        final int INF = 999;
+          
+
+//        int[][] Matrix = {
+//            {0, 3, INF, INF, 6, 5},
+//            {3, 0, 1, INF, INF, 4},
+//            {INF, 1, 0, 6, 8, 5},
+//            {INF, INF, 6, 0, 8, 5},
+//            {6, INF, INF, 8, 0, 2},
+//            {5, 4, 4, 5, 2, 0}
+//
+//        };
+        int[][] Matrix={
+            
+            {0,1,1,INF},
+            {1,0,1,1},
+            {1,1,0,INF},
+            {INF,1,INF,0}
+        };
+        
+         char[] alphabetTST = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+        char[] labelsTST = new char[Matrix.length];
+
+        for (int i = 0; i < Matrix.length; i++) {        
+            //AdjacencyList[i] = new LinkedList();
+            labelsTST[i] = alphabetTST[i];
+        }
+         int[] vistied = new int[Matrix.length];
+        
+        for (int i = 0; i < vistied.length; i++) {
+            vistied[i] =-1;
+        }
+        
+        
+        ArrayList<edge> ed_ = new ArrayList<>();
+        
+       
+        for (int i = 0; i <Matrix.length; i++) {
+            
+            for (int j = 0; j < Matrix[i].length; j++) {
+                
+                if (Matrix[i][j] !=INF && Matrix[i][j] != 0) {
+                    edge ob = new edge(i,j,labelsTST[i],Matrix[i][j]);
+                    ed_.add(ob);
+                }
+               
+            }
+        }
+        
+      
+//        Arrays.sort(edge_);
+        
+//        for (int i = 0; i < edge_.length; i++) {
+//          //  System.out.println("h");
+//            System.out.print(edge_[i].getSrc()+"-->" + edge_[i].getDest());
+//            System.out.print("deeeee"+edge_[i].getDistance());
+//            System.out.println("");
+//        }
+        
+        
+        
+        //
+          Collections.sort(ed_, new Comparator<edge>() {
+            @Override           
+            public int compare(edge edge1, edge edge2) {
+                
+                int ed1 = edge1.distance;
+                int ed2 = edge2.distance;
+                return Integer.valueOf(ed1).compareTo(ed2);
+         
+            }
+        });
+        
+          
+          
+           for (int i = 0; i < Matrix.length; i++) {
+            int parentHead = ed_.get(i).src;
+
+            for (int j = 0; j < Matrix[i].length; j++) {
+                
+                if (i == j || Matrix[i][j] == INF) {
+                    continue;
+                }
+
+                int destinationHead = ed_.get(i).des;
+                System.out.println("Checking cyclicity at edge " + labelsTST[i] + "->" + labelsTST[j] + "...\n");
+
+                System.out.println(ed_.get(i).findCycle(parentHead, destinationHead, ed_.get(i),ed_.get(j)));
+
+                System.out.println("\n\n");
+            }
+            
+            System.out.println("");
+        }
+        
+          
+//          while(!ed_.isEmpty()){
+//              System.out.println(ed_.get(0).src + "-->" + ed_.get(0).des);
+//              System.out.println("cost" + ed_.get(0).distance);
+//              ed_.remove(0);
+//          }
+//          
+//        System.out.println("");
+//        
+//        
+//       // int ver = Matrix.length+5;
+//        int weight = 0;
+//        edge the_edge;
+//        
+//        int c =0;
+//        System.out.println("array contens");
+//        while(!ed_.isEmpty()){
+//        edge d = ed_.get(0);
+//          System.out.println("the edge is " + d.src + "-->" + d.des + "with co" + d.distance);
+//        ed_.remove(0);
+//        }
+//        
+//        while(!ed_.isEmpty()){
+//            
+//        the_edge = ed_.get(0);
+//      
+//            if (vistied[the_edge.src] == -1 ||
+//                            vistied[the_edge.des] == -1 && the_edge.src !=the_edge.des
+//                   ) {
+//                System.out.println("the edge is " + the_edge.src + "-->" + the_edge.des + "with co" + the_edge.distance);
+//            
+//                weight+=the_edge.distance;
+//                vistied[the_edge.src]=1;
+//                vistied[the_edge.des]=1;
+//                 c++;  
+//
+//                 
+//            }
+//         
+//        ed_.remove(0);
+//        
+//        }
+        
+        System.out.println("weight is " + weight);
+        
+     
+        
+        
+//        int[][] Matrix = {
+//            // A  B   C    D    E    F    G   H   I
+//            // a
+//            {INF, 4, INF, INF, INF, INF, INF, 8, INF},
+//            // b
+//            {4, INF, 8, INF, INF, INF, INF, 11, INF},
+//            // c
+//            {INF, 8, INF, 7, INF, 4, INF, INF, 2},
+//            // d
+//            {INF, INF, 7, INF, 9, 14, INF, INF, INF},
+//            // e
+//            {INF, INF, INF, 9, INF, 10, INF, INF, INF},
+//            // f
+//            {INF, INF, 4, 14, 10, INF, 2, INF, INF},
+//            // g 
+//            {INF, INF, INF, INF, INF, 2, INF, 1, 6},
+//            // h
+//            {8, 11, INF, INF, INF, INF, 1, INF, 7},
+//            // i
+//            {INF, INF, 2, INF, INF, INF, 6, 7, INF}};
+
+        //Kruskal(Matrix, INF);
+
+    }
+    
+   
+
+    public static void Kruskal(int[][] Matrix, int INF) {
+
+        /*
+         Kruskal’s Algorithm
+        
+        
+         - Description:
+        
+        
+         - Parameters:
+        
+        
+        
+         - Output:
+        
+        
+         */
+        int[] parent = new int[Matrix.length];
+        int min;
+        int u = 0;
+        int v = 0;
+        int noOfEdges = 0;
+        int total = 0;
+        
+        boolean[] visited = new boolean[Matrix.length];
+        char[][] minHeap = new char[Matrix.length][2];
+        int[] distances = new int[Matrix.length];
+
+        for (int i = 0; i < Matrix.length; i++) {
+
+            parent[i] = -1;
+            visited[i] = false;
+
+        }
+
+        char[] alphabet = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+        char[] labels = new char[Matrix.length];
+        ArrayList<Integer> parentNodes = new ArrayList<Integer>();
+
+       
+        for (int i = 0; i < Matrix.length; i++) {
+            labels[i] = alphabet[i];
+        }
+
+        while (noOfEdges < Matrix.length) {
+
+            min = INF;
+
+            for (int i = 0; i < Matrix.length; i++) {
+
+                for (int j = 0; j < Matrix.length; j++) {
+
+                    if (Matrix[i][j] < min && visited[j] != true) {
+
+                        min = Matrix[i][j];
+                        u = i;
+                        v = j;
+                       
+
+                    }
+
+                }
+
+            }
+
+//            while (parent[u] != 0) {
+//                //   System.out.println("ininite loop!!");
+//               // System.out.println("u = " + labels[u] + "\tparent[u] = " + labels[parent[u]]);
+//
+//                u = parent[u];
+//                // System.out.println("u = "+ u +"\tparent[u] = "+parent[u]);
+//                //parent[u] = 0;
+//            }
+//
+//            while (parent[v] != 0) {
+//                //  System.out.println("infinite loop 2!!!!!");
+//
+//              //  System.out.println("v = " + labels[v] + "\tparent[v] = " + labels[parent[v]]);
+//
+//                v = parent[v];
+//
+//            }
+            // make sure destination is not a parent node:
+//            for (int i = 0; i < parentNodes.length; i++) {
+//                if (parentNodes[i] == destinationNode) {
+//                    parentNodes[i] = v;
+//                    break;
+//                } else {
+//
+//                    noOfEdges++;
+//                    System.out.println("Edge Found: " + labels[u] + "->" + labels[v] + " Min : " + min);
+//                    total += min;
+//                    parent[v] = u;
+//
+//                    visited[v] = 1; //doesn't visit e 
+//
+//            //visited[u] = 1; // doesn't visit c
+//                    // parent[u] = v;
+//                    Matrix[u][v] = INF;
+//                    Matrix[v][u] = INF;
+//                }
+//
+//            }
+              Matrix[u][v] = INF;
+            Matrix[v][u] = INF;
+            if (!parentNodes.contains(u)) {
+             
+
+                minHeap[v][0] = labels[u];
+                minHeap[v][1] = labels[v];
+                distances[v]=min;
+                System.out.println("Edge Found: " + minHeap[v][0] + "->" +  minHeap[v][1] + " Min : " +   distances[v]);
+
+                visited[u] = true;
+                visited[v]=true;
+                total += min;
+                parent[v] = u;
+                parentNodes.add(parent[v]);//            System.out.println("Parent: "+labels[parent[v]]);
+                //  visited[u] = 1; //doesn't visit e 
+
+                     noOfEdges++;
+            }
+
+        
+            //visited[u] = 1; // doesn't visit c
+            // parent[u] = v;
+            
+        }
+
+        System.out.println("The weight of the minimum spanning tree is " + total);
+    }
+
+    
+    
+    public static class edge{
+   int src;
+   int des;
+   char letter;
+   int distance;
+
+   
+   public edge() {
+            this.src = 0;
+            this.des = 0;
+            this.distance = 0;
+        }
+        public edge(int src, int des, int distance) {
+            this.src = src;
+            this.des = des;
+            this.distance = distance;
+        }
+
+          public edge(int src,int des, char letter, int distance) {
+            this.src = src;
+            this.des= des;
+            this.letter= letter;
+            this.distance = distance;
+        }
+        public int getSrc() {
+            return src;
+        }
+
+        public void setSrc(int src) {
+            this.src = src;
+        }
+
+        public int getDes() {
+            return des;
+        }
+
+        public void setDes(int des) {
+            this.des = des;
+        }
+
+        public int getDistance() {
+            return distance;
+        }
+
+        public void setDistance(int distance) {
+            this.distance = distance;
+        }
+
+         public int getNeighborNot(char x) {
+        LLnode hlpptr = this.head;
+
+        while (hlpptr != null && !hlpptr.isChecked()) {
+
+            if (hlpptr.getLabel() == x) {
+
+                hlpptr.setChecked(true);
+                hlpptr.getNext();
+            } else {
+                return hlpptr;
+            }
+
+        }
+        return -1;
+
+    }
+        public boolean findCycle(int parentHead, int destinationHead, edge get, edge get0) {
+            // || parent==null && destination==null
+        //
+        if (parentHead == 0 && destinationHead != 0) {
+            return false;
+
+        }
+        if (parentHead != 0 && destinationHead == 0) {
+            return false;
+        }
+
+        if (parentHead == destinationHead) {
+            return true;
+
+        }
+
+        int ParentNeighbor = get.getNeighborNot(destination.getLabel());
+        LLnode DestNeighbor = dList.getNeighborNot(parent.getLabel());
+        if (ParentNeighbor != null) {
+            if (ParentNeighbor == DestNeighbor) {
+                return true;
+            }
+
+        }
+        return findCycle(parent.getNext(), destination.getNext(), pList, dList);
+        }
+   
+   
+   
+   };
+    
+    
+}// class
