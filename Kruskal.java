@@ -61,6 +61,7 @@ public class Kruskal {
 //
 //                    }
 
+// AdjacencyList[j].setHead(head);
                     AdjacencyList[j].InsertNeighbor(i, labelsTST[i]);
 
                 }
@@ -90,19 +91,24 @@ public class Kruskal {
 //
 //        }
         for (int i = 0; i < test.length; i++) {
+            LLnode parentHead = AdjacencyList[i].getHead();
+           // System.out.println("p = "+parentHead.getLabel());
 
             for (int j = 0; j < test[i].length; j++) {
+                if (i == j) {
+                    continue;
+                }
 
-                LLnode parentHead = AdjacencyList[i].getHead();
                 LLnode destinationHead = AdjacencyList[j].getHead();
-                System.out.println("Checking cyclicity from " + parentHead.getLabel() + " to " + destinationHead.getLabel() + "...\n");
+                System.out.println("Checking cyclicity from " + labelsTST[i] + " to " + labelsTST[j] + "...\n");
 
                 //                        System.out.println(AdjacencyList[i].findCycle(i, j,  AdjacencyList[i],  AdjacencyList[j]));
 //boolean isCycle = AdjacencyList[i].findCycle(parentHead, destinationHead, AdjacencyList[i], AdjacencyList[j])
                 System.out.println(AdjacencyList[i].findCycle(parentHead, destinationHead, AdjacencyList[i], AdjacencyList[j]));
 
+                System.out.println("\n\n");
             }
-
+            System.out.println("\n\n");
         }
 //        
 //     LLnode parentHead = pList.getHead();
