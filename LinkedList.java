@@ -44,7 +44,7 @@ public class LinkedList {
     public LLnode getNeighborNot(char x) {
         LLnode hlpptr = this.head;
 
-        while (hlpptr != null&& !hlpptr.isChecked()) {
+        while (hlpptr != null && !hlpptr.isChecked()) {
 
             if (hlpptr.getLabel() == x) {
 
@@ -68,7 +68,7 @@ public class LinkedList {
 
         // if the list is empty OR if the node value is less than the head
         // we insert in the beginning
-        if (head == null ) {
+        if (head == null) {
             head = new LLnode(index, label, head);
             return head;
         } else {
@@ -79,7 +79,7 @@ public class LinkedList {
             while (helpPtr.getNext() != null) {
                 // if the value is less than the node's value, 
                 // then exit the while loop because we will insert at the end 
-                
+
                 helpPtr = helpPtr.getNext();
             }
             // create new node and insert it at the end of the list
@@ -139,34 +139,28 @@ public class LinkedList {
         }
         System.out.println("");
 
-        
-        
     }
-     
-    
-    
-    
-    public  boolean findCycle(LLnode parent, LLnode destination, LinkedList pList, LinkedList dList) {
 
-      
-        if (parent == null || destination == null) {
+    public boolean findCycle(LLnode parent, LLnode destination, LinkedList pList, LinkedList dList) {
+
+        if (parent == null && destination != null) {
             return false;
 
+        }
+        if (parent != null && destination == null) {
+            return false;
+        }
+        
+        if (parent == destination) {
+            return true;
 
         }
         if (parent == destination) {
             return true;
-
-
-        }
-        if (parent == destination) {
-            return true;
-
 
         }
         if (pList.getNeighborNot(destination.getLabel()) == dList.getNeighborNot(parent.getLabel())) {
-            return true ;
-
+            return true;
 
         } else {
             return findCycle(parent.getNext(), destination.getNext(), pList, dList);
