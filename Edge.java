@@ -10,22 +10,30 @@ package kruskal;
  * @author maha
  */
 public class Edge {
-//
+
 //    int srcINDX, desINDX;
 //    char srcLBL, desLBL;
     int distance;
-    
-    
     LLnode source;
     LLnode destination; 
     
+    
+     /**
+     * Create constructor
+     * An edge will have 3 attributes, a source vertex, a destination vertex 
+     * and weight.
+     * @param source The source vertex.
+     * @param destination The destination vertex.
+     * @param distance An integer that represents the distance.
+     */
 
     public Edge( LLnode source, LLnode destination, int distance) {
         this.distance = distance;
         this.source = source;
         this.destination = destination;
     }
-
+    
+    // getters + setters:
     public LLnode getSource() {
         return source;
     }
